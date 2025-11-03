@@ -58,7 +58,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		// Our data
+		// The List of words that can be used in our game
 		String[] wordsList = {"cookie", "chocolat", "patisserie", "anticonstitutionnelement", "sandwich", "marteau", "capitalisme", "alphabet", "confiture"};
 		
 		String randomizedWord = randomizer(wordsList);
@@ -67,15 +67,28 @@ public class Main {
 		// Scanner
 		Scanner scan = new Scanner(System.in);
 		
-		//nombre d'essais
+		// Number of fail authorized (10 by default)
 		int tryLeft = 10;
-		// sauvegarde des précédentes lettre
+		
+		// We initialize a set a of character to store previous guesses
 		Set<Character> inputList = new HashSet<>();
 		
 		while (!winCondition(hidedWord) && tryLeft > 0) {
 			displayHidenWord(hidedWord);
 			System.out.println("Entrez une lettre: ");
-			char usrChoice = scan.next().toLowerCase().charAt(0);
+			String usrInput = scan.next().toLowerCase();
+			
+			// Check Input validity (must be length 1 and a letter)
+			if (usrInput.length() !=1  || !Character.isLetter(usrInput.charAt(0))) {
+				System.out.println("Entrée invalide! Veuillez entrer une seule lettre.");
+				continue;
+			}
+			
+			// If the input is good, then we "convert" it into a char
+			char usrChoice = usrInput.charAt(0);
+			
+			// We check if the char was already tried before and display an error
+			// message if that was the case
 			if (inputList.contains(usrChoice)) {
 				System.out.println("Lettre " + usrChoice + " déjà proposé!");
 				displayHidenWord(hidedWord);
