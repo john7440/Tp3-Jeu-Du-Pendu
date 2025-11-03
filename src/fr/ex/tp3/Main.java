@@ -75,8 +75,8 @@ public class Main {
 		
 		while (!winCondition(hidedWord) && tryLeft > 0) {
 			displayHidenWord(hidedWord);
-			System.out.println("Entrez une lettre: ");
-			String usrInput = scan.next().toLowerCase();
+			System.out.println("Entrez une lettre: (déja utilisé " + inputList + "): ");
+			String usrInput = scan.next().trim().toLowerCase();
 			
 			// Check Input validity (must be length 1 and a letter)
 			if (usrInput.length() !=1  || !Character.isLetter(usrInput.charAt(0))) {
@@ -94,7 +94,9 @@ public class Main {
 				displayHidenWord(hidedWord);
 				
 			} else {
+				// Else we add the new char to the list
 				inputList.add(usrChoice);
+				
 				if (updatingHiddenWord(randomizedWord, hidedWord, usrChoice)) {
 					System.out.println("Bien joué !");
 	            } else {
@@ -110,7 +112,7 @@ public class Main {
 		// Check if the Win or Loose condition is true,
 		// if it is then it display a message accordingly
 		if (winCondition(hidedWord)) {
-			System.out.println("Félicitations vous avez gagné ! Le mot était bien : " + randomizedWord);
+			System.out.println("Félicitations vous avez gagné en "+ tryLeft+" essais! Le mot était bien : " + randomizedWord);
 		} else {
 			System.out.println("Vous avez perdu! Le mot était : " + randomizedWord);
 			
