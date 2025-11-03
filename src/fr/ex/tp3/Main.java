@@ -86,15 +86,18 @@ public class Main {
 					System.out.println("Bien joué !");
 	            } else {
 	            	tryLeft--;
-	                System.out.println("Raté ! il vous reste " + tryLeft + " essais !");
+	                System.out.println("Raté! {" + usrChoice + "} ne se trouve pas dans le mot!\nIl vous reste " + tryLeft + " essais !");
 	                System.out.println("Lettres déjà proposées : " + inputList);
 	            }
 					
 				}
 			
 		}
+		
+		// Check if the Win or Loose condition is true,
+		// if it is then it display a message accordingly
 		if (winCondition(hidedWord)) {
-			System.out.println("Bravo ! Le mot était : " + randomizedWord);
+			System.out.println("Félicitations vous avez gagné ! Le mot était bien : " + randomizedWord);
 		} else {
 			System.out.println("Vous avez perdu! Le mot était : " + randomizedWord);
 			
