@@ -64,7 +64,10 @@ public class Main {
 		// Scanner
 		Scanner scan = new Scanner(System.in);
 		
-		while (!winCondition(hidedWord)) {
+		//nombre d'essais
+		int tryLeft = 10;
+		
+		while (!winCondition(hidedWord) && tryLeft > 0) {
 			displayHidenWord(hidedWord);
 			System.out.println("Entrez une lettre: ");
 			char usrChoice = scan.next().toLowerCase().charAt(0);
@@ -73,12 +76,18 @@ public class Main {
 				System.out.println("Bien joué !");
             } else {
                 System.out.println("Raté !");
+                tryLeft--;
             }
 					
 		}
-		System.out.println("Bravo ! Le mot était : " + randomizedWord);
-        scan.close();
 		
+		if (winCondition(hidedWord)) {
+			System.out.println("Bravo ! Le mot était : " + randomizedWord);
+		} else {
+			System.out.println("Vous avez perdu! Le mot était : " + randomizedWord);
+			
+		}
+		scan.close();
 			
 		}
 
