@@ -75,8 +75,8 @@ public class Main {
 			if (updatingHiddenWord(randomizedWord, hidedWord, usrChoice)) {
 				System.out.println("Bien joué !");
             } else {
-                System.out.println("Raté !");
-                tryLeft--;
+            	tryLeft--;
+                System.out.println("Raté ! il vous reste " + tryLeft + " essais !");
             }
 					
 		}
