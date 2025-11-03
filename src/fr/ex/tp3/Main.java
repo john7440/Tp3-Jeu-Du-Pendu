@@ -1,4 +1,6 @@
 package fr.ex.tp3;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -26,11 +28,12 @@ public class Main {
 	public static void displayHidenWord(char[] hidden) {
 		
 		// Affichage
-		System.out.println("Mot mystère : ");
+		System.out.println("\nMot mystère : ");
 		for (char c: hidden) {
 			System.out.print(c + " ");
 		}
 		System.out.println();
+		
 	}
 	
 	public static boolean updatingHiddenWord(String word, char[]hidden, char userInput) {
@@ -66,21 +69,30 @@ public class Main {
 		
 		//nombre d'essais
 		int tryLeft = 10;
+		// sauvegarde des précédentes lettre
+		Set<Character> inputList = new HashSet<>();
 		
 		while (!winCondition(hidedWord) && tryLeft > 0) {
 			displayHidenWord(hidedWord);
 			System.out.println("Entrez une lettre: ");
 			char usrChoice = scan.next().toLowerCase().charAt(0);
-			
-			if (updatingHiddenWord(randomizedWord, hidedWord, usrChoice)) {
-				System.out.println("Bien joué !");
-            } else {
-            	tryLeft--;
-                System.out.println("Raté ! il vous reste " + tryLeft + " essais !");
-            }
+			if (inputList.contains(usrChoice)) {
+				System.out.println("Lettre " + usrChoice + " déjà proposé!");
+				displayHidenWord(hidedWord);
+				
+			} else {
+				inputList.add(usrChoice);
+				if (updatingHiddenWord(randomizedWord, hidedWord, usrChoice)) {
+					System.out.println("Bien joué !");
+	            } else {
+	            	tryLeft--;
+	                System.out.println("Raté ! il vous reste " + tryLeft + " essais !");
+	                System.out.println("Lettres déjà proposées : " + inputList);
+	            }
 					
+				}
+			
 		}
-		
 		if (winCondition(hidedWord)) {
 			System.out.println("Bravo ! Le mot était : " + randomizedWord);
 		} else {
