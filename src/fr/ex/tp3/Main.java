@@ -6,16 +6,18 @@ import java.util.Scanner;
 
 public class Main {
 	
-	
+	// This method takes a list of words in parameter and randomize
+	// an index and return the word at that index
 	public static String randomizer(String[] wordList) {
 		
-		// Randomization
 		Random random = new Random();
 		int rdmIndex = random.nextInt(wordList.length);
 		return wordList[rdmIndex];
 		
 	}
 	
+	// This method take the word the user have to find in input
+	// and it return a modified version of it (like _ _ _ _ _ )
 	public static char [] hidingWordFromUser(String word) {
 		
 		char[] hiddenWord = new char[word.length()];
@@ -25,9 +27,9 @@ public class Main {
         return hiddenWord;
 	}
 	
+	// Display for the hidden word 
 	public static void displayHidenWord(char[] hidden) {
 		
-		// Affichage
 		System.out.println("\nMot mystère : ");
 		for (char c: hidden) {
 			System.out.print(c + " ");
@@ -36,10 +38,10 @@ public class Main {
 		
 	}
 	
+	// This method update accordingly the word to find with correct letters
 	public static boolean updatingHiddenWord(String word, char[]hidden, char userInput) {
-		
-		// verification
 		boolean found = false;
+		
 		for (int i =0; i < word.length(); i++) {
 			if (word.charAt(i) == userInput) {
 				hidden[i] = userInput;
@@ -49,6 +51,8 @@ public class Main {
 		return found;
 	}
 	
+	// This is the win condition of our game, it checks if the hidden word
+	// contains any '_', if not then it returns true which mean the player won
 	public static boolean winCondition(char[] hidden) {
 		for (char c : hidden) {
 			if (c == '_') return false;
