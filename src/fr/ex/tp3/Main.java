@@ -63,7 +63,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// The List of words that can be used in our game
-		String[] wordsList = {"cookie", "chocolat", "patisserie", "anticonstitutionnelement", "sandwich", "marteau", "capitalisme", "alphabet", "confiture"};
+		String[] wordsList = {"cookie", "chocolat", "patisserie", "anticonstitutionnellement", "sandwich", "marteau", "capitalisme", "alphabet", "confiture"};
 		
 		String randomizedWord = randomizer(wordsList);
 		char[] hidedWord = hidingWordFromUser(randomizedWord);
