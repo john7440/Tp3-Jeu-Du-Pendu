@@ -79,12 +79,12 @@ public class Main {
 		
 		while (!winCondition(hidedWord) && tryLeft > 0) {
 			displayHidenWord(hidedWord);
-			System.out.println("Entrez une lettre: (déja utilisé " + inputList + "): ");
+			System.out.println("\nEntrez une lettre: (déja utilisé " + inputList + "): ");
 			String usrInput = scan.next().trim().toLowerCase();
 			
 			// Check Input validity (must be length 1 and a letter)
 			if (usrInput.length() !=1  || !Character.isLetter(usrInput.charAt(0))) {
-				System.out.println("Entrée invalide! Veuillez entrer une seule lettre.");
+				System.out.println("\nEntrée invalide! Veuillez entrer une seule lettre:");
 				continue;
 			}
 			
@@ -94,7 +94,7 @@ public class Main {
 			// We check if the char was already tried before and display an error
 			// message if that was the case
 			if (inputList.contains(usrChoice)) {
-				System.out.println("Lettre " + usrChoice + " déjà proposé!");
+				System.out.println("\nLettre " + usrChoice + " déjà proposé!");
 				displayHidenWord(hidedWord);
 				
 			} else {
@@ -102,11 +102,11 @@ public class Main {
 				inputList.add(usrChoice);
 				
 				if (updatingHiddenWord(randomizedWord, hidedWord, usrChoice)) {
-					System.out.println("Bien joué !");
+					System.out.println("\nBien joué ! continuez comme ça :)");
 	            } else {
 	            	tryLeft--;
-	                System.out.println("Raté! {" + usrChoice + "} ne se trouve pas dans le mot!\nIl vous reste " + tryLeft + " essais !");
-	                System.out.println("Lettres déjà proposées : " + inputList);
+	                System.out.println("\nRaté! {" + usrChoice + "} ne se trouve pas dans le mot!\nIl vous reste " + tryLeft + " essais!");
+	                System.out.println("\nLettres déjà proposées : " + inputList);
 	            }
 					
 				}
@@ -116,9 +116,13 @@ public class Main {
 		// Check if the Win or Loose condition is true,
 		// if it is then it display a message accordingly
 		if (winCondition(hidedWord)) {
+			System.out.println("\n----------------------------------------------------------------------------------");
 			System.out.println("Félicitations vous avez gagné en "+ tryLeft+" essais! Le mot était bien : " + randomizedWord);
+			System.out.println("----------------------------------------------------------------------------------");
 		} else {
+			System.out.println("\n-----------------------------------------");
 			System.out.println("Vous avez perdu! Le mot était : " + randomizedWord);
+			System.out.println("-----------------------------------------");
 			
 		}
 		scan.close();
